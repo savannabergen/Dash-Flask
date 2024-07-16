@@ -1,0 +1,19 @@
+    {% include 'base.html'%}
+    {% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{ h1 }}</h1>
+        <p class="lead">{{ paragraph }}</p>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    </div>
+    <div class="mx-auto">
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {{ form.img(class="form-control") }}
+            <br>
+            {{ form.operation(class="form-control")}}
+            <br>
+            {{ form.submit(class="btn btn-success")}}
+        </form>
+    </div>
+    {% endblock %}

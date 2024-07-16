@@ -1,0 +1,36 @@
+<!-- Savanna Bergen WEBD-3010 7/8/2024 -->
+<!-- Main Index Route -->  
+    {% include 'base.html' %}
+    {% block content %}
+    <div class="jumbotron" id="green">
+        <h1 class="display-4">{{ h1 }}</h1>
+        <p><small class="text-muted">This is a compilation of Python libraries and modules I’ve learnt throughout the course of WEBD-3010. This site is built on a Flask framework. Different libraries have been utilized to create a Pillow Image Manipulation Application, a Plotly and Dash application, as well as an assistant with Chatterbot.  </small></p>
+        <p><small class="text-muted">Created By Savanna</small></p>
+        <hr class="my-4">
+        <div class="card-group">
+          <div class="card">
+            <img src="static/images/public3.avif" class="card-img-top" alt="..." style="width: auto">
+            <div class="card-body">
+              <h5 class="card-title">Pillow Conversion</h5>
+              <p class="card-text">Pillow is a free and open-sourced image manipulation library. It is a fork of Python Imaging Library, or otherwise known as PIL. This Web Application will allow you to upload an image of your choice, to convert to jpg, png, or gray, using the logic of Pillow.</p>
+              <a class="btn btn-outline-success" href="{{ url_for('upload') }}" role="button">Go to Pillow</a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="static/images/public.avif" class="card-img-top" alt="..." style="width: auto">
+            <div class="card-body">
+              <h5 class="card-title">ChatterBot</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, vitae pariatur numquam amet quae aperiam quasi a enim unde, blanditiis ut similique, veniam temporibus possimus praesentium iure corrupti harum. Atque. Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, officiis eum ex ad laudantium molestiae possimus quo esse qui eaque, minus, omnis animi quidem delectus officia nesciunt impedit quod quam?</p>
+              <a class="btn btn-outline-success" href="{{ url_for('upload') }}" role="button">Click for ChatterBot</a>
+            </div>
+          </div>
+          <div class="card">
+            <img src="static/images/public2.avif" class="card-img-top" alt="..." style="width: auto">
+            <div class="card-body">
+              <h5 class="card-title">Plotly Dash</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+              <a class="btn btn-outline-success" href="{{ url_for('upload') }}" role="button">Dash Here</a>
+            </div>
+          </div>
+        </div>
+      {% endblock %}
