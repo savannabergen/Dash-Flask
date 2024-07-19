@@ -1,14 +1,29 @@
 {% include 'base.html' %}
 {% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Iris Prediction</h1>
+    <p class="lead">{{ paragraph }}</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+</div>
 <div class="mx-auto">
-    <form method="POST" enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
+    <form method="POST" action="{{ url_for('predict') }}">
+        <label for="sepal_length">Sepal Length:</label>
+        <input class="form-control" type="text" name="sepal_length" id="sepal_length" required>
         <br>
+        <label for="sepal_width">Sepal Width:</label>
+        <input class="form-control" type="text" name="sepal_width" id="sepal_width" required>
         <br>
-        {{ form.slength(class="form-control") }}
+        <label for="petal_length">Petal Length:</label>
+        <input class="form-control" type="text" name="petal_length" id="petal_length" required>
         <br>
+        <label for="petal_width">Petal Width:</label>
+        <input class="form-control" type="text" name="petal_width" id="petal_width" required>
         <br>
-        {{ form.submit(class="btn btn-success")}}
+        <button class="btn btn-success" type="submit">Predict</button>
     </form>
+    {% if prediction %}
+    <p>The predicted species is {{ prediction[0] }}</p>
+    {% endif %}
 </div>
 {% endblock %}

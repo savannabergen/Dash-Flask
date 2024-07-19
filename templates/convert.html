@@ -15,5 +15,8 @@
             <br>
             {{ form.submit(class="btn btn-success")}}
         </form>
+        {% if new_image %}
+        <div id="alert" class="alert alert-success" role="alert">Your File Is Available <a href={{new_image}}>Here</a></div>
+        {% endif %}
     </div>
     {% endblock %}

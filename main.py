@@ -6,6 +6,7 @@ from wtforms import SubmitField, SelectField, StringField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 import pickle
 from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
 
 app = Flask(__name__)
 
@@ -69,7 +70,6 @@ def upload():
         operation = form.operation.data
         file_url = url_for('get_files', filename=filename)
         new_image = process_image(file_url, operation)
-        return f'Your File Is Available <a href={new_image}>Here</a>'
     else: 
         file_url = None
         new_image = None      
@@ -85,17 +85,24 @@ def predict():
     form = BotForm()
     # Processing code
     if request.method == "POST":
-        data = request.json 
-        print(data)
-        with open('model.pkl', 'rb') as f:
-            clf = pickle.load(f)
-        test = [[data["sepal_length"], data["sepal_width"], data["petal_length"], data["petal_width"]]]
-        output = clf.predict(test)
+        X = iris.data
+        y = iris.target
 
-        class_flower = iris["target_names"][output]
-        print(class_flower)
-        return {"class": class_flower, "success": "True"}          
-    return render_template('predict.html', form=form)
+        # Train decision tree classifier
+        clf = DecisionTreeClassifier()
+        clf.fit(X, y)
+
+        # Get user input from HTML form
+        sepal_length = float(request.form['sepal_length'])
+        sepal_width = float(request.form['sepal_width'])
+        petal_length = float(request.form['petal_length'])
+        petal_width = float(request.form['petal_width'])
+
+        # Make prediction
+        prediction = clf.predict([[sepal_length, sepal_width, petal_length, petal_width]])
+    else:
+        prediction = None         
+    return render_template('predict.html', form=form, prediction=prediction)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

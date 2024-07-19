@@ -23,3 +23,8 @@ form{
 .jumbotron{
     margin-top: 50px;
 }
+
+#alert{
+    margin-top: 5px;
+    width: 500px;
+}
