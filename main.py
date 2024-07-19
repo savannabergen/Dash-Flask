@@ -1,14 +1,15 @@
 from flask_uploads import UploadSet, IMAGES, configure_uploads
-from flask import Flask, render_template, send_from_directory, url_for, redirect
+from flask import Flask, render_template, send_from_directory, url_for, request
 from PIL import Image
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField
+from wtforms import SubmitField, SelectField, StringField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from dash import Dash, html, dcc
-import dash
-import plotly.express as px
+import pickle
+from sklearn.datasets import load_iris
 
 app = Flask(__name__)
+
+iris = load_iris()
  # Learn Where to Hide this
 app.secret_key = b'_53oi3uriq9pifpff;apl'
 # Define Uploads Folder
@@ -73,6 +74,28 @@ def upload():
         file_url = None
         new_image = None      
     return render_template('convert.html', form=form, h1=h1, paragraph=paragraph, file_url=file_url, new_image=new_image)
+
+class BotForm(FlaskForm):
+    slength = StringField("Enter Sepal Length")
+    submit = SubmitField("Submit")
+
+# Route To Predict
+@app.route("/predict", methods=['GET', 'POST'])
+def predict():
+    form = BotForm()
+    # Processing code
+    if request.method == "POST":
+        data = request.json 
+        print(data)
+        with open('model.pkl', 'rb') as f:
+            clf = pickle.load(f)
+        test = [[data["sepal_length"], data["sepal_width"], data["petal_length"], data["petal_width"]]]
+        output = clf.predict(test)
+
+        class_flower = iris["target_names"][output]
+        print(class_flower)
+        return {"class": class_flower, "success": "True"}          
+    return render_template('predict.html', form=form)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
