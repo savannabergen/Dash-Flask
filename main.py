@@ -4,11 +4,12 @@ from PIL import Image
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, StringField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-import pickle
 from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier
+from init import create_dash_application
 
 app = Flask(__name__)
+create_dash_application(app)
 
 iris = load_iris()
  # Learn Where to Hide this
