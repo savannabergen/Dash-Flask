@@ -12,16 +12,13 @@ ul{
     list-style: none;
 }
 
-div{
-    padding: 20px 20px;
-}
-
 form{
     width:300px;
 }
 
 .jumbotron{
     margin-top: 50px;
+    padding: 10px;
 }
 
 #alert{

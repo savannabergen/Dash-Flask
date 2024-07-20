@@ -100,9 +100,12 @@ def predict():
 
         # Make prediction
         prediction = clf.predict([[sepal_length, sepal_width, petal_length, petal_width]])
+
+        class_flower = iris['target_names'][prediction]
     else:
+        class_flower = None
         prediction = None         
-    return render_template('predict.html', form=form, prediction=prediction)
+    return render_template('predict.html', form=form, prediction=prediction, class_flower=class_flower)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

@@ -6,17 +6,21 @@
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     </div>
-    <div class="mx-auto">
-        <form method="POST" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            {{ form.img(class="form-control") }}
-            <br>
-            {{ form.operation(class="form-control")}}
-            <br>
-            {{ form.submit(class="btn btn-success")}}
-        </form>
-        {% if new_image %}
-        <div id="alert" class="alert alert-success" role="alert">Your File Is Available <a href={{new_image}}>Here</a></div>
-        {% endif %}
+    <div class="row">
+        <div class="col">
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                {{ form.img(class="form-control") }}
+                <br>
+                {{ form.operation(class="form-control")}}
+                <br>
+                {{ form.submit(class="btn btn-success")}}
+            </form>
+        </div>
+        <div class="col">
+            {% if new_image %}
+            <div id="alert" class="alert alert-success" role="alert">Your File Is Available <a href={{new_image}}>Here</a></div>
+            {% endif %}
+        </div>
     </div>
     {% endblock %}
