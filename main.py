@@ -9,7 +9,6 @@ from sklearn.tree import DecisionTreeClassifier
 from init import create_dash_application
 
 app = Flask(__name__)
-create_dash_application(app)
 
 iris = load_iris()
  # Learn Where to Hide this
@@ -107,6 +106,9 @@ def predict():
         class_flower = None
         prediction = None         
     return render_template('predict.html', form=form, prediction=prediction, class_flower=class_flower)
+
+
+create_dash_application(app)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

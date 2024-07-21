@@ -2,20 +2,23 @@
 from dash import Dash, html, dash_table, Output, Input
 import pandas as pd
 import dash_bootstrap_components as dbc
+import dash_auth
 
 # Incorporate data
 df = pd.read_csv('Infrastructure_Plan_Funding_20240720.csv')
-
+VALID_USERNAME = {
+    'hello':'world'
+}
 
 # Initialize the app
 def create_dash_application(flask_app):
     dash_app = Dash(__name__,
-                server=flask_app,
-                title='Example Dash login',
-                update_title='Loading...', suppress_callback_exceptions=True, url_base_pathname="/Dash/", external_stylesheets=[dbc.themes.BOOTSTRAP])
+            server=flask_app,
+            title='Example Dash login',
+            update_title='Loading...', suppress_callback_exceptions=True, url_base_pathname="/Dash/", external_stylesheets=[dbc.themes.SOLAR])
     # App layout
     stack = html.Div([
-             html.H4('City of Winnipeg Infrastructure Funding'),
+             html.H4('City of Winnipeg Infrastructure Funding', className='display-3'),
              html.P(id='table_out'), 
                          dash_table.DataTable(
                                 id='table',
@@ -26,8 +29,8 @@ def create_dash_application(flask_app):
                                 style_cell={'overflow': 'hidden',
                                             'textOverflow': 'ellipsis',
                                                 'maxWidth': 0},
-                                style_header=dict(backgroundColor="rgb(30, 30, 30)", color="white"),
-                                style_data=dict(backgroundColor="rgb(50, 50, 50)", color="white")
+                                style_header=dict(backgroundColor="slategray", color="white"),
+                                style_data=dict(backgroundColor="lavender")
                                 ),
                                     ]),
     
