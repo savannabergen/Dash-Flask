@@ -6,9 +6,12 @@ from wtforms import SubmitField, SelectField, StringField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier
-from init import create_dash_application
+from dash_app.dash_app import create_dash_application
 
+# Loading Flask
 app = Flask(__name__)
+# Loading Dash
+create_dash_application(app)
 
 iris = load_iris()
  # Learn Where to Hide this
@@ -75,14 +78,9 @@ def upload():
         new_image = None      
     return render_template('convert.html', form=form, h1=h1, paragraph=paragraph, file_url=file_url, new_image=new_image)
 
-class BotForm(FlaskForm):
-    slength = StringField("Enter Sepal Length")
-    submit = SubmitField("Submit")
-
 # Route To Predict
 @app.route("/predict", methods=['GET', 'POST'])
 def predict():
-    form = BotForm()
     # Processing code
     if request.method == "POST":
         X = iris.data
@@ -105,10 +103,7 @@ def predict():
     else:
         class_flower = None
         prediction = None         
-    return render_template('predict.html', form=form, prediction=prediction, class_flower=class_flower)
-
-
-create_dash_application(app)
+    return render_template('predict.html', prediction=prediction, class_flower=class_flower)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
