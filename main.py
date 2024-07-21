@@ -38,14 +38,18 @@ def process_image(filename, operation):
             converted_image = image1.convert("L")
             new_file_name = f"static/{filename.split('.')[0] + 'gray.jpg'}"
             converted_image.save(new_file_name, 'jpeg')
-            return new_file_name             
+            return new_file_name
+        case "palet": 
+            converted_image = image1.convert("P")
+            new_file_name = f"static/{filename.split('.')[0] + 'palet.jpg'}"
+            converted_image.save(new_file_name, 'png')
+            return new_file_name                
 
 # Route Decorator To Index
 @app.route('/')
 def index():
     h1 = "Instructions"
-    page = "Test"
-    return render_template("index.html", h1=h1, page=page)
+    return render_template("index.html", h1=h1)
 
 # Configure Flask Form
 class Form(FlaskForm):
@@ -54,7 +58,7 @@ class Form(FlaskForm):
         FileRequired('File Field Should Not Be Empty')
     ])
     operation = SelectField('Project',
-                           choices=['jpg', 'png', 'gray'])
+                           choices=['jpg', 'png', 'gray', 'palet'])
     submit = SubmitField("Submit")
 
 # Pillow Upload

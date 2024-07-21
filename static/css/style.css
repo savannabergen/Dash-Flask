@@ -12,6 +12,11 @@ ul{
     list-style: none;
 }
 
+div{
+    padding: 5px;
+    margin: 10px;
+}
+
 form{
     width:300px;
 }
