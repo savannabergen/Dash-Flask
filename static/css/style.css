@@ -4,21 +4,9 @@
 body{
     background-color: rgb(235, 231, 231);
 }
-input{
-    padding: 5px;
-    justify-content: space-between;
-}
+
 ul{
     list-style: none;
-}
-
-div{
-    padding: 5px;
-    margin: 10px;
-}
-
-form{
-    width:300px;
 }
 
 .jumbotron{
@@ -29,4 +17,8 @@ form{
 #alert{
     margin-top: 5px;
     width: 500px;
+}
+
+div{
+    padding: 5px;
 }

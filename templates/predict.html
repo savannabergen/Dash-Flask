@@ -6,9 +6,9 @@
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
 </div>
-<div class="container bg-light border">
+<div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col" style="max-width: 400px;">
             <form method="POST" action="{{ url_for('predict') }}">
                 <div class="form-floating mb-3">
                     <input class="form-control" type="text" name="sepal_length" id="sepal_length" placeholder="1.9" required>
@@ -29,33 +29,35 @@
                 <button class="btn btn-success" type="submit">Predict</button>
             </form>
         </div>
-        {% if prediction == 0 %}
-            <div class="card" style="width: 18rem;">
-                <img src="static/images/setosa.jpg" class="card-img-top" alt="setosa">
-                <div class="card-body">
-                    <h5 class="card-title">Iris Setosa</h5>
-                  <p class="card-text">Iris setosa, the bristle-pointed or Arctic iris, is distributed around the Arctic Ocean and down temperate coastlines into Alaska and BC in western North American and the Atlantic provinces in the east. </p>
+        <div class="col">
+            {% if prediction == 0 %}
+                <div class="card" style="width: 18rem;">
+                    <img src="static/images/setosa.jpg" class="card-img-top" alt="setosa">
+                    <div class="card-body">
+                        <h5 class="card-title">Iris Setosa</h5>
+                      <p class="card-text">Iris setosa, the bristle-pointed or Arctic iris, is distributed around the Arctic Ocean and down temperate coastlines into Alaska and BC in western North American and the Atlantic provinces in the east. </p>
+                    </div>
                 </div>
-            </div>
-            {% endif %}
-            {% if prediction == 1 %}
-            <div class="card" style="width: 18rem;">
-                <img src="static/images/versicolor.jpg" class="card-img-top" alt="versicolor">
-                <div class="card-body">
-                    <h5 class="card-title">Iris Versicolor</h5>
-                  <p class="card-text">It is a species of Iris native to North America, in the Eastern United States and Eastern Canada. It is common in sedge meadows, marshes, and along streambanks and shores. The specific epithet versicolor means "variously colored".</p>
+                {% endif %}
+                {% if prediction == 1 %}
+                <div class="card" style="width: 18rem;">
+                    <img src="static/images/versicolor.jpg" class="card-img-top" alt="versicolor">
+                    <div class="card-body">
+                        <h5 class="card-title">Iris Versicolor</h5>
+                      <p class="card-text">It is a species of Iris native to North America, in the Eastern United States and Eastern Canada. It is common in sedge meadows, marshes, and along streambanks and shores. The specific epithet versicolor means "variously colored".</p>
+                    </div>
                 </div>
-            </div>
-            {% endif %}
-            {% if prediction == 2 %}
-            <div class="card" style="width: 18rem;">
-                <img src="static/images/virginica.jpg" class="card-img-top" alt="virginica">
-                <div class="card-body">
-                    <h5 class="card-title">Iris Virginica</h5>
-                  <p class="card-text">A southern wetland species occurring from Virginia to Florida and Texas, Iris virginica is 3 feet tall with bright green leaves that often lie on the ground or water.</p>
+                {% endif %}
+                {% if prediction == 2 %}
+                <div class="card" style="width: 18rem;">
+                    <img src="static/images/virginica.jpg" class="card-img-top" alt="virginica">
+                    <div class="card-body">
+                        <h5 class="card-title">Iris Virginica</h5>
+                      <p class="card-text">A southern wetland species occurring from Virginia to Florida and Texas, Iris virginica is 3 feet tall with bright green leaves that often lie on the ground or water.</p>
+                    </div>
                 </div>
-            </div>
-            {% endif %}
+                {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

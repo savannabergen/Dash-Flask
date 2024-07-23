@@ -2,14 +2,16 @@
 <!-- Main Index Route -->  
     {% include 'base.html' %}
     {% block content %}
-    <div class="jumbotron" id="green">
-        <h1 class="display-4">{{ h1 }}</h1>
-        <p><small class="text-muted">A compilation of Python libraries and modules integrated into a Full-Stack Application. This site is built on a Flask framework with Plotly-Dash integration.</small></p>
-        <p><small class="text-muted">Created By Savanna</small></p>
-        <hr class="my-4">
-        <div class="card-group">
+    <div class="jumbotron">
+      <h1 class="display-4 text-center">{{ h1 }}</h1>
+      <p class="lead text-center">A compilation of Python libraries and modules integrated into a Full-Stack Application. This site is built on a Flask framework with Plotly-Dash integration.
+      </p>
+  </div>
+  <hr class="my-4">
+        <div class="card-group mx-auto" style="max-width: 1000px;">
           <div class="card">
             <div class="card-body">
+              <img src="static/images/public2.avif" class="card-img-top" alt="public">
               <h5 class="card-title">Pillow Conversion</h5>
               <p class="card-text">Pillow is a free and open-sourced image manipulation library. It is a fork of Python Imaging Library, or otherwise known as PIL. Upload an image of your choice, to convert to jpg, png, or gray, using the image manipulation capabilities of the Pillow library.</p>
               <a class="btn btn-outline-success" href="{{ url_for('upload') }}" role="button">Go to Pillow</a>
@@ -17,17 +19,20 @@
           </div>
           <div class="card">
             <div class="card-body">
+              <img src="static/images/public.avif" class="card-img-top" alt="public">
               <h5 class="card-title">Iris Prediction</h5>
-              <p class="card-text">The Iris dataset is often used in data mining, classification and clustering examples and to test algorithms in Machine Learning. This ML Model will use the Iris dataset to predict which speciies of Iris measurements, using the SKLEARN machine learning and data modeling library.</p>
+              <p class="card-text">The Iris dataset is often used in data mining, classification and clustering examples and to test algorithms in Machine Learning. This model uses the measurements to predict the species of Iris by using SKLEARN machine learning and data modeling library.</p>
               <a class="btn btn-outline-success" href="{{ url_for('predict') }}" role="button">Click for Iris</a>
             </div>
           </div>
           <div class="card">
             <div class="card-body">
+              <img src="static/images/public3.avif" class="card-img-top" alt="public">
               <h5 class="card-title">Plotly Dash</h5>
-              <p class="card-text"></p>
+              <p class="card-text">Dash is a flexible low code framework for data visualization, often used together with Plotly. This integrated Dash app analyzes the infrastructure funding dataset from OpenMB Government Portal with the help of Plotly.</p>
               <a class="btn btn-outline-success" href="/Dash" role="button">Plotly-Dash Here</a>
             </div>
           </div>
         </div>
+        <hr class="my-4">
       {% endblock %}
