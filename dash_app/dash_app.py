@@ -2,14 +2,20 @@
 from dash import Dash, html, dash_table, Output, Input, dcc
 import pandas as pd
 import dash_bootstrap_components as dbc
-import dash_auth
-import plotly.express as px
+import plotly.graph_objects as go
 
 # Incorporate data
 df = pd.read_csv('Infrastructure_Plan_Funding_20240720.csv')
-VALID_USERNAME = {
-    'hello':'world'
-}
+
+fig = go.Figure()
+fig.add_trace(go.Scattergl(x=df['Department'], y=df['Funded'], name='Funded', mode='markers'))
+fig.add_trace(go.Scatter(x=df['Department'], y=df['Unfunded'], name='Unfunded', mode='markers'))
+fig.add_trace(go.Scatter(x=df['Department'], y=df['Capital Cost'], name='Capital Cost', mode='markers'))
+
+
+
+fig.update_layout(title='Line Graph', showlegend=True)
+
 
 # Initialize the app
 def create_dash_application(flask_app):
@@ -31,12 +37,14 @@ def create_dash_application(flask_app):
                                             'textOverflow': 'ellipsis',
                                                 'maxWidth': 0},
                                 style_header=dict(backgroundColor="white", color="black"),
-                                style_data=dict(backgroundColor="lightgrey")
-                                ),
+                                style_data=dict(backgroundColor="white")
+                                ),                    
+            dcc.Graph(figure=fig)
                                     ]),
-    
+                    
     dash_app.layout = dbc.Container(stack)
 
+    
     @dash_app.callback(
         Output('table_out', 'children'), 
         Input('table', 'active_cell'))
@@ -45,6 +53,7 @@ def create_dash_application(flask_app):
             cell_data = df.iloc[active_cell['row']][active_cell['column_id']]
             return f"Data: \"{cell_data}\" from table cell: {active_cell}"
         return "Click the table"
+        
 
     return dash_app
 
