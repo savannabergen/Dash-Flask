@@ -70,7 +70,6 @@ def get_files(filename):
 @app.route('/convert', methods=['GET', 'POST'])
 def upload():
     h1 = "Welcome to the Pillow App"
-    paragraph = "Pillow is a Python Library"
     form = Form()
     if form.validate_on_submit():
         filename = photos.save(form.img.data)
@@ -80,7 +79,7 @@ def upload():
     else: 
         file_url = None
         new_image = None      
-    return render_template('convert.html', form=form, h1=h1, paragraph=paragraph, file_url=file_url, new_image=new_image)
+    return render_template('convert.html', form=form, h1=h1, file_url=file_url, new_image=new_image)
 
 # Route To Predict
 @app.route("/predict", methods=['GET', 'POST'])

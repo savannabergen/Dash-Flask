@@ -7,11 +7,11 @@ import plotly.graph_objects as go
 # Incorporate data
 df = pd.read_csv('Infrastructure_Plan_Funding_20240720.csv')
 
+# Create Line Graph
 fig = go.Figure()
 fig.add_trace(go.Scattergl(x=df['Department'], y=df['Funded'], name='Funded', mode='markers'))
 fig.add_trace(go.Scatter(x=df['Department'], y=df['Unfunded'], name='Unfunded', mode='markers'))
 fig.add_trace(go.Scatter(x=df['Department'], y=df['Capital Cost'], name='Capital Cost', mode='markers'))
-
 
 
 fig.update_layout(title='Line Graph', showlegend=True)

@@ -2,9 +2,15 @@
 {% block content %}
 <div class="jumbotron">
     <h1 class="display-4">Iris Prediction</h1>
-    <p class="lead">{{ paragraph }}</p>
+    <p class="lead">Learning Outcomes:</p>
+    <ol>
+        <li>Creating a secondary Flask Route /predict</li>
+        <li>Creating a model with a decision tree from Iris Dataset</li>
+        <li>WTF forms for input</li>
+        <li>Predict an Iris species using the model</li>
+    </ol>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p>Please enter a Sepal and Petal width and length for the Model to use. It will predict one of three Iris species: Setosa, Versicolor, and Virginica.</p>
 </div>
 <div class="container">
     <div class="row">
