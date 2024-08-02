@@ -10,7 +10,7 @@ ul{
 }
 
 .jumbotron{
-    margin-top: 80px;
+    margin: 20px;
 }
 
 #alert{
@@ -20,4 +20,8 @@ ul{
 
 div{
     padding: 5px;
+}
+
+.form-intro{
+    margin-left: 20px;
 }

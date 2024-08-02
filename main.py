@@ -1,27 +1,26 @@
+# WEBD - 3010 Savanna Bergen 8/1/2024
 from flask_uploads import UploadSet, IMAGES, configure_uploads
 from flask import Flask, render_template, send_from_directory, url_for, request
 from PIL import Image
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, StringField
+from wtforms import SubmitField, SelectField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier
 from dash_app.dash_app import create_dash_application
-
 # Loading Flask
 app = Flask(__name__)
+# Secret Key
+app.secret_key = b'_53oi3uriq9pifpff;apl'
 # Loading Dash
 create_dash_application(app)
-
+# Loading Iris
 iris = load_iris()
- # Learn Where to Hide this
-app.secret_key = b'_53oi3uriq9pifpff;apl'
 # Define Uploads Folder
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/uploads'
 # ALLOWED_EXTENSIONS
 photos = UploadSet('photos', IMAGES)
 configure_uploads(app, photos)
-
 # Process Image
 def process_image(filename, operation):
     image1 = Image.open(f"static/{filename}")
@@ -44,13 +43,11 @@ def process_image(filename, operation):
             new_file_name = f"static/{filename.split('.')[0] + 'palet.jpg'}"
             converted_image.save(new_file_name, 'png')
             return new_file_name                
-
 # Route Decorator To Index
 @app.route('/')
 def index():
     h1 = "Instructions"
     return render_template("index.html", h1=h1)
-
 # Configure Flask Form
 class Form(FlaskForm):
     img = FileField(validators=[
@@ -60,16 +57,15 @@ class Form(FlaskForm):
     operation = SelectField('Project',
                            choices=['jpg', 'png', 'gray', 'palet'])
     submit = SubmitField("Submit")
-
 # Pillow Upload
 @app.route('/uploads/<filename>') 
 def get_files(filename):
-    return send_from_directory(app.config['UPLOADED_PHOTOS_DEST'], filename)
-   
+    return send_from_directory(app.config['UPLOADED_PHOTOS_DEST'], filename)  
 # Route Decorator To Pillow
 @app.route('/convert', methods=['GET', 'POST'])
 def upload():
     h1 = "Welcome to the Pillow App"
+
     form = Form()
     if form.validate_on_submit():
         filename = photos.save(form.img.data)
@@ -80,7 +76,6 @@ def upload():
         file_url = None
         new_image = None      
     return render_template('convert.html', form=form, h1=h1, file_url=file_url, new_image=new_image)
-
 # Route To Predict
 @app.route("/predict", methods=['GET', 'POST'])
 def predict():
